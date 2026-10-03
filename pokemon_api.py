@@ -1,4 +1,3 @@
-```python
 import random
 import requests
 from typing import Dict, Any
@@ -23,7 +22,7 @@ def fetch_random_pokemon() -> Dict[str, Any]:
     species_response.raise_for_status()
     species_data = species_response.json()
 
-    # Traditional Chinese Pokemon name
+    # Get Traditional Chinese Pokemon name
     for name in species_data["names"]:
         if name["language"]["name"].lower() == "zh-hant":
             pokemon_name = name["name"]
@@ -31,7 +30,7 @@ def fetch_random_pokemon() -> Dict[str, Any]:
     else:
         pokemon_name = pokemon_data["name"].title()
 
-    # Traditional Chinese species / genus
+    # Get Traditional Chinese species / genus
     for genus in species_data["genera"]:
         if genus["language"]["name"].lower() == "zh-hant":
             species_name = genus["genus"]
@@ -39,13 +38,13 @@ def fetch_random_pokemon() -> Dict[str, Any]:
     else:
         species_name = species_data["genera"][0]["genus"]
 
-    # Remove "寶可夢" from species name
+    # Remove "寶可夢" from the species name
     species_name = species_name.replace("寶可夢", "").strip()
 
-    # Pokemon types
+    # Get Pokemon types
     types = [t["type"]["name"] for t in pokemon_data["types"]]
 
-    # Traditional Chinese type names
+    # Traditional Chinese type translations
     type_translation = {
         "normal": "一般",
         "fire": "火",
@@ -68,8 +67,8 @@ def fetch_random_pokemon() -> Dict[str, Any]:
     }
 
     chinese_types = [
-        type_translation.get(t, t.title())
-        for t in types
+        type_translation.get(pokemon_type, pokemon_type.title())
+        for pokemon_type in types
     ]
 
     return {
@@ -81,4 +80,3 @@ def fetch_random_pokemon() -> Dict[str, Any]:
         "weight": f'{pokemon_data["weight"] / 10} kg',
         "artwork": pokemon_data["sprites"]["other"]["official-artwork"]["front_default"]
     }
-```
