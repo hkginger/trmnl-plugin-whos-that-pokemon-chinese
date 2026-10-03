@@ -134,7 +134,7 @@ def test_fetch_random_pokemon_falls_back_to_english_name(
             result = fetch_random_pokemon()
 
     assert result["name"] == "Pikachu"
-    assert result["species"] == "Mouse"
+    assert result["species"] == "Mouse Pokémon"
 
 
 def test_fetch_random_pokemon_calls_correct_endpoints(
