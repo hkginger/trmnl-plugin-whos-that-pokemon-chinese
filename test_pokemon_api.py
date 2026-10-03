@@ -1,4 +1,3 @@
-```python
 import pytest
 from unittest.mock import Mock, patch
 
@@ -210,4 +209,3 @@ def test_fetch_random_pokemon_handles_lowercase_language_code(
 
     assert result["name"] == "皮卡丘"
     assert result["species"] == "鼠"
-```
